@@ -1,10 +1,12 @@
-import React, { useEffect,useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Sigup from "./Sigup.css"
+import SigIn from './SigInPage/SigIn';
 const SigupForm = () => {
 
     // Set Teh State for Email and Password for Login purpose
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
 
 
     // This useEffect Initial State Run of The Data
@@ -20,40 +22,32 @@ const SigupForm = () => {
         signInButton.addEventListener('click', () => {
             container.classList.remove("right-panel-active");
         });
-    })
+    }, [])
 
 
     const handleLogin = () => {
         // Hardcoded email and password for demonstration purposes
-        const hardcodedEmail = 'user@example.com';
+        const hardcodedEmail = 'user@gmail.com';
         const hardcodedPassword = 'password';
-    
+
         if (email === hardcodedEmail && password === hardcodedPassword) {
-          // Redirect to the next page on successful login
-          alert("Welcome to Our Page")
+            // Redirect to the next page on successful login
+            alert("Welcome to Our Page")
         } else {
-          alert('Invalid email or password');
+            alert('Invalid email or password');
         }
-      };
+    };
+
+
+    // Show Password and Hide
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
     return (
         <div>
             <h2>Weekly Coding Challenge #1: Sign in/up Form</h2>
             <div className="container" id="container">
-                <div className="form-container sign-up-container">
-                    <form action="#">
-                        <h1>Create Account</h1>
-                        <div className="social-container">
-                            <a href="#" className="social"><i className="fab fa-facebook-f"></i></a>
-                            <a href="#" className="social"><i className="fab fa-google-plus-g"></i></a>
-                            <a href="#" className="social"><i className="fab fa-linkedin-in"></i></a>
-                        </div>
-                        <span>or use your email for registration</span>
-                        <input type="text" placeholder="Name" />
-                        <input type="email" placeholder="Email" />
-                        <input type="password" placeholder="Password" />
-                        <button>Sign Up</button>
-                    </form>
-                </div>
+                <SigIn/>
                 <div className="form-container sign-in-container">
                     <form action="#">
                         <h1>Sign in</h1>
@@ -63,8 +57,12 @@ const SigupForm = () => {
                             <a href="#" className="social"><i className="fab fa-linkedin-in"></i></a>
                         </div>
                         <span>or use your account</span>
-                        <input type="email" onChange={(e) => setEmail(e.target.value)} id='semail' placeholder="Email" />
-                        <input type="password" onChange={(e) => setPassword(e.target.value)} id='spass' placeholder="Password" />
+                        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
+                        <input type={showPassword ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)}
+                        />
+                        <span className="password-toggle" onClick={togglePasswordVisibility}>
+                            {showPassword ? <i className="far fa-eye"></i> : <i className="far fa-eye-slash"></i>}
+                        </span>
                         <a href="#">Forgot your password?</a>
                         <button onClick={handleLogin}>Sign In</button>
                     </form>
