@@ -24,7 +24,6 @@ const SigupForm = () => {
         });
     }, [])
 
-
     const handleLogin = () => {
         // Hardcoded email and password for demonstration purposes
         const hardcodedEmail = 'user@gmail.com';
@@ -45,9 +44,28 @@ const SigupForm = () => {
     };
     return (
         <div>
-            <h2>Weekly Coding Challenge #1: Sign in/up Form</h2>
-            <div className="container" id="container">
-                <SigIn/>
+            <div className="container" id='container' >
+
+            // Sigin Page In Our User Data
+            <SigIn/>
+                {/* <div class="form-container sign-up-container">
+                    <form action="#">
+                        <h1>Create Account</h1>
+                        <div class="social-container">
+                            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                            <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                        <span>or use your email for registration</span>
+                        <input type="text" placeholder="Name" />
+                        <input type="email" placeholder="Email" />
+                        <input type="password" placeholder="Password" />
+                        <button>Sign Up</button>
+                    </form>
+                </div> */}
+
+
+               // SigIn Page for Our User Login with correct credientials
                 <div className="form-container sign-in-container">
                     <form action="#">
                         <h1>Sign in</h1>
@@ -58,7 +76,7 @@ const SigupForm = () => {
                         </div>
                         <span>or use your account</span>
                         <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
-                        <input type={showPassword ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)}
+                        <input placeholder='password' type={showPassword ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)}
                         />
                         <span className="password-toggle" onClick={togglePasswordVisibility}>
                             {showPassword ? <i className="far fa-eye"></i> : <i className="far fa-eye-slash"></i>}
@@ -70,7 +88,7 @@ const SigupForm = () => {
                 <div className="overlay-container">
                     <div className="overlay">
                         <div className="overlay-panel overlay-left">
-                            <h1>Welcome Back!</h1>
+                            <h1>Welcome</h1>
                             <p>To keep connected with us please login with your personal info</p>
                             <button className="ghost" id="signIn">Sign In</button>
                         </div>
