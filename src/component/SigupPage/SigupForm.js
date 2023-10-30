@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import Sigup from "./Sigup.css"
-import SigIn from './SigInPage/SigIn';
-const SigupForm = () => {
+import SigIn from '../SigInPage/SigIn';
+import { useNavigate } from 'react-router-dom';
 
+
+const SigupForm = () => {
     // Set Teh State for Email and Password for Login purpose
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
 
+    const navigate = useNavigate();
+    console.log(111, navigate)
 
     // This useEffect Initial State Run of The Data
     useEffect(() => {
@@ -32,6 +36,7 @@ const SigupForm = () => {
         if (email === hardcodedEmail && password === hardcodedPassword) {
             // Redirect to the next page on successful login
             alert("Welcome to Our Page")
+            navigate('/multi');
         } else {
             alert('Invalid email or password');
         }
@@ -47,7 +52,7 @@ const SigupForm = () => {
             <div className="container" id='container' >
 
             // Sigin Page In Our User Data
-            <SigIn/>
+                <SigIn />
                 {/* <div class="form-container sign-up-container">
                     <form action="#">
                         <h1>Create Account</h1>
